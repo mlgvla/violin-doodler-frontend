@@ -11,24 +11,24 @@ The application we will create during the project build series is a "Syllabus Sh
 ### PART 1: Planning and Building a Rails API
 
 **BEFORE YOU CODE**
-- [] 1. Check project requirements in [JavaScript READMEs](https://github.com/learn-co-students/js-spa-project-instructions-online-web-sp-000)
-- [] 2. Ideate! What do you want to build?
+- [x] 1. Check project requirements in [JavaScript READMEs](https://github.com/learn-co-students/js-spa-project-instructions-online-web-sp-000)
+- [x] 2. Ideate! What do you want to build?
     - choose a domain you're familiar with!
     - choose a domain you care about
-- [] 3. Wireframing & User Stories
+- [x] 3. Wireframing & User Stories
     - Write down your models, their attributes, and their associations
     - "As a user, I can ....."
     - "A user should be able to ....."
     - What does your app _do_?
-- [] 4. Design your MVP = 'Minimum Viable Product' vs. what are my 'stretch goals'
+- [x] 4. Design your MVP = 'Minimum Viable Product' vs. what are my 'stretch goals'
     - Stretch goals - bonus features you want but don't need
 
 **NOW WE'RE READY FOR PROJECT SET UP**
 
-- [] 5. Generate new [Rails API](https://edgeguides.rubyonrails.org/api_app.html) using `rails new <my_app_name> --database=postgresql --api`
+- [x] 5. Generate new [Rails API](https://edgeguides.rubyonrails.org/api_app.html) using `rails new <my_app_name> --database=postgresql --api`
     - (Replace `<my_app_name>` with the actual name of your project)
-- [] 6. Create github repo
-- [] 7. Create a new branch for building out models `git co -b <branch_name>`. This way you can always go back to the fresh API.
+- [x] 6. Create github repo
+- [x] 7. Create a new branch for building out models `git co -b <branch_name>`. This way you can always go back to the fresh API.
     - **NOTE**: It is best practice to always create a new branch when working on a new feature/edit to your code. Your master branch should only have working code. Debug in a branch, not in master.
 
 **NOW WE'RE READY TO CODE (BUT JUST OUR MODELS — NO CONTROLLERS OR SERIALIZERS YET)**
