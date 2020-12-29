@@ -41,7 +41,7 @@ function playTest(){
 
 function playMelody() {  // will eventually play .this
     const synth = new Tone.Synth().toMaster();
-    Tone.Transport.bpm.value = 60;
+    Tone.Transport.bpm.value = 120;
 
     const melody = [
     ['E4', '4n.'],
@@ -79,6 +79,10 @@ function playMelody() {  // will eventually play .this
 
     ['C4', '1m']
     ];
+
+    const lightlyRow = [["E5", "4n"], ["C#5", "4n"], ["C#5", "2n"], ["D5", "4n"], ["B4", "4n"], ["B4", "2n"], ["A4", "4n"], ["B4", "4n"], ["C#5", "4n"], ["D5", "4n"], ["E5", "4n"], ["E5", "4n"], ["E5", "2n"], ["E5", "4n"], ["C#5", "4n"], ["C#5", "4n"], ["C#5", "4n"], ["D5", "4n"], ["B4", "4n"], ["B4", "4n"], ["B4", "4n"], ["A4", "4n"], ["C#5", "4n"], ["E5", "4n"], ["E5", "4n"], ["C#5", "4n"], ["C#5", "4n"], ["C#5", "2n"], 
+    
+    ["B4", "4n"], ["B4", "4n"], ["B4", "4n"], ["B4", "4n"], ["B4", "4n"], ["C#5", "4n"], ["D5", "2n"], ["C#5", "4n"], ["C#5", "4n"], ["C#5", "4n"], ["C#5", "4n"], ["C#5", "4n"], ["D5", "4n"], ["E5", "2n"], ["E5", "4n"], ["C#5", "4n"], ["C#5", "4n"], ["C#5", "4n"], ["D5", "4n"], ["B4", "4n"], ["B4", "4n"], ["B4", "4n"], ["A4", "4n"], ["C#5", "4n"], ["E5", "4n"], ["E5", "4n"], ["C#5", "4n"], ["C#5", "4n"], ["C#5", "2n"]]
   
 
 //window.onmousedown = (e) => {
@@ -96,15 +100,17 @@ function playMelody() {  // will eventually play .this
 //     t += Tone.Time(note[1]);
 //   }
 
-    for (const note of melody) {
+    for (const note of lightlyRow) {
         console.log(note);
         let el = document.querySelector(`[data-note="${note[0]}"]`)
         if (note[0] !== 'rest') {
             //synth.triggerAttackRelease(note[0], note[1], t);
-            el.style.filter = "brightness(130%) saturate(110%)"
+           // el.style.filter = "brightness(130%) saturate(110%)"
+            
             //Experiment using separate triggerAttack and triggerRelease
-            synth.triggerAttackRelease(note[0], Tone.Time(note[1]) - 0.1, t);  
-            //setTimeout(function (){ el.removeAttribute("style") }, Tone.Time(note[1]).toMilliseconds())//set equal to 
+            synth.triggerAttackRelease(note[0], Tone.Time(note[1]) - 0.1, t);
+           // setTimeout(function (){ el.removeAttribute("style") }, Tone.Time(note[1]).toMilliseconds())//set equal to note length
+           
 
         }
 
