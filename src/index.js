@@ -1,3 +1,27 @@
+const endPoint = "http://localhost:3000/api/v1/melodies"
+
+document.addEventListener("DOMContentLoaded", () => {
+    getMelodies()
+})
+
+function getMelodies() {
+    fetch(endPoint)
+      .then(res => res.json())
+      .then(melodies => {
+          console.log(melodies.data)
+          melodies.data.forEach(melody => {
+            //   do some markup here
+          });
+      });
+}
+
+
+
+
+
+
+// Violin Sandbox Code
+
 const play = document.querySelector("#run")
 
 const violin = document.querySelector(".violin")

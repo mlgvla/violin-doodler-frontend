@@ -1,10 +1,18 @@
+.outer-container {
+    display: flex;
+    flex-direction: row;
+}
+.container-left {
+    display: block;   
+}
 
-.container {
+.container-right {
   margin-top: 3rem;  
   font-family: Verdana, Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: center;
 }
+
 .violin {
   display: flex;
 }
