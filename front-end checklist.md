@@ -35,18 +35,18 @@ The application we will create during the project build series is a "Syllabus Sh
 
 **NOTE**: Remember to _**VERTICALLY**_ build your MVP! This means building out one model/feature at a time. DO NOT build out _all_ the models and controllers at the same time. This is the easiest way to get lost in your project very early. Read more about this [here](https://github.com/learn-co-students/js-spa-project-instructions-online-web-sp-000/blob/master/project-planning-tips.md#build-vertically-not-horizontallys).
 
-- [] 8. Build your models: `rails g model <your_model_name> name` (Make sure you capitalize the first letter of the model name!)
+- [x] 8. Build your models: `rails g model <your_model_name> name` (Make sure you capitalize the first letter of the model name!)
     - Migrations
     - Model classes
     - Associations
-- [] 9. Test your models and associations in the console
+- [x] 9. Test your models and associations in the console
     - Create some seed data
     - Adjust migrations as needed
 
 
 ### PART 2: Routes, Controllers, Serializers
 
-- [] 1. Routes
+- [x] 1. Routes
     - Implement _specific_ namespaced routes for _a_ controller **for MVP**
     - REMEMBER! We're _trying_ to build vertically.
 
@@ -63,12 +63,12 @@ The application we will create during the project build series is a "Syllabus Sh
     - Visit `http://localhost:3000/api/v1/<your_resource_name>` to see error
 
 
-- [] 2. Controllers
+- [x] 2. Controllers
     - In your console run: `rails g controller api/v1/<your controller_name>` (Make sure you capitalize and the first letter of the controller name!)
     - Build relevant routes for MVP (ex: `index` and `create`)
     - Visit `http://localhost:3000/api/v1/<your_resource_name>` to see JSON data
 
-- [] 3. Fast JSON API Serializer
+- [x] 3. Fast JSON API Serializer
     - Add `gem 'fast_jsonapi'` to your Rails project's Gemfile and run `bundle install`
     - Create Serializer classes
       - `rails g serializer <your_resource_name>`
@@ -101,8 +101,8 @@ The application we will create during the project build series is a "Syllabus Sh
         - To control the attributes displayed in the association view PART 2 notes on adding relationships
 
 
-- [] 4. **TEST:** Confirm data at your Rails endpoints! (ex: `http://seeda.com/api/v1/syllabuses`)
-- [ ] 5. Build out your associated models using this same process. **REMEMBER: Focus on building vertically for MVP** this means only starting with 2 or 3 models before moving on to the frontend.
+- [x] 4. **TEST:** Confirm data at your Rails endpoints! (ex: `http://seeda.com/api/v1/syllabuses`)
+- [x] 5. Build out your associated models using this same process. **REMEMBER: Focus on building vertically for MVP** this means only starting with 2 or 3 models before moving on to the frontend.
 
 
 ### PART 3: DOM Manipulation, Events, and Fetch using Rails API
@@ -113,10 +113,10 @@ The application we will create during the project build series is a "Syllabus Sh
 
 **Initial Setup**
 
-- [] 1. Create separate directory for frontend
-- [] 2. Create `index.html` file with script tag connecting your `index.js`. Ex: `<script type="text/javascript" src="index.js"></script>`
-- [] 3. Create `index.js`, `console.log("in index.js")`, and check for the logged message in your dev tools to confirm the `index.html` <> `index.js` connection was established.
-- [] 4. Initialize a `git` repo for frontend repository.
+- [x] 1. Create separate directory for frontend
+- [x] 2. Create `index.html` file with script tag connecting your `index.js`. Ex: `<script type="text/javascript" src="index.js"></script>`
+- [x] 3. Create `index.js`, `console.log("in index.js")`, and check for the logged message in your dev tools to confirm the `index.html` <> `index.js` connection was established.
+- [x] 4. Initialize a `git` repo for frontend repository.
 
 **Connect your API to your frontend!**
 
