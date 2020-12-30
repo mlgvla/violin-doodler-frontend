@@ -1,3 +1,35 @@
+const endPoint = "http://localhost:3000/api/v1/melodies"
+
+document.addEventListener("DOMContentLoaded", () => {
+    getMelodies()
+})
+
+function getMelodies() {
+    fetch(endPoint)
+      .then(res => res.json())
+      .then(melodies => {
+            console.log(melodies.data)
+            melodies.data.forEach(melody => {
+            const melodyMarkup = `
+                <tr data-id=${melody.id}>
+                    <td>${melody.attributes.title}</td>
+                    <td>${melody.attributes.key}</td>
+                    <td>${melody.attributes.user.name}</td>
+                    <td><button data-id=${melody.id}>Play</button></td>                      
+                </tr>`
+
+                document.querySelector('#melody-container').innerHTML += melodyMarkup
+            });
+        });
+}
+
+
+
+
+
+
+// Violin Sandbox Code
+
 const play = document.querySelector("#run")
 
 const violin = document.querySelector(".violin")
