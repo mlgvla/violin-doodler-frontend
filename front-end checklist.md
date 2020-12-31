@@ -130,7 +130,7 @@ The application we will create during the project build series is a "Syllabus Sh
 
 **Receive (GET) data _from_ the server**
 
-- [] 10. `GET` request
+- [x] 10. `GET` request
     - Create a new branch for `GET` implementation.
     - Create your `get____` function (ex: `function getToys()`) that will make a call to your `index` endPoint in your API, make your `GET` request inside the function and `console.log` the json data, then call your `get___` function in the `DOMContentLoaded` event listener.
     - Once you have confirmed your `GET` request is returning the `JSON` you were expecting, use that data to update the `DOM`.(see PART 3 notes for example)
