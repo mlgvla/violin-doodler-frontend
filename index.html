@@ -12,22 +12,42 @@
 <body>
     
 <div class="outer-container">
-  <div class="container-left">
-      <!-- design table here -->
-    <table id="melody-container">
-        <tr>
-            <th>Melody</th>
-            <th>Key</th>
-            <th>Composer</th>
-            <th>Action</th>
-        </tr>
-       
-    </table>
+    <div class="container-left">
+        <!-- design table here -->
+        <table id="melody-container">
+            <tr>
+                <th>Melody</th>
+                <th>Key</th>
+                <th>Composer</th>
+                <th>Action</th>
+            </tr>
+        </table>
+    <div class="form-container">
+        <form id="create-melody-form">
+            <h3>Create a Melody</h3>
+        
+            <input id='input-title' type="text" name="title" value="" placeholder="Melody Name" class="input-text">
+            <br><br>
+            <textarea id='input-notes' name="notes" rows="8" cols="80" value="" placeholder="Use fingerboard and note values to record melody"></textarea>
+            <br><br>
+            <input id='input-key' type="text" name="key" value="" placeholder="Enter the key of your melody." class="input-text">
+            <br><br>
+        
+            <select id="categories" name="categories">
+                <option value="1">Monica</option>
+                <option value="2">Ashley</option>
+                <option value="3">Mason</option>
+            </select>
+            <br><br>
+            <input id='input-user' type="text" name="user" value="" placeholder="Create a new User" class="input-text">
+            <br><br>
+        
+            <input id='create-button' type="submit" name="submit" value="Create New Melody" class="submit">
+        </form>
 
-    <!-- place at end of each row with melody id -->
-
-    
-  </div>  
+    </div>
+        
+    </div>  
   <div class="container-right">
     <div class="violin">
       <div class="string">
