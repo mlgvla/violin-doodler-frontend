@@ -2,6 +2,10 @@ const endPoint = "http://localhost:3000/api/v1/melodies"
 
 document.addEventListener("DOMContentLoaded", () => {
     getMelodies()
+
+    createMelodyForm = document.querySelector("#create-melody-form")
+
+    createMelodyForm.addEventListener('submit', (e) => createFormHandler(e))
 })
 
 function getMelodies() {
@@ -11,22 +15,56 @@ function getMelodies() {
             console.log(melodies.data)
             melodies.data.forEach(melody => renderMelodyRow(melody))
 
-            melodies.data.forEach(melody => attachEventListeners(melody))           
+            //eliminate this after I refactor rendorMelodyRow to use
+            // createElements and AppendChilds
+            //melodies.data.forEach(melody => attachEventListeners(melody))           
         });
 }
 
-function renderMelodyRow(melody){
-    const melodyMarkup = `
-        <tr data-id=${melody.id}>
-            <td>${melody.attributes.title}</td>
-            <td>${melody.attributes.key}</td>
-            <td>${melody.attributes.user.name}</td>
-            <td><button data-id=${melody.id}>Play</button></td>                      
-        </tr>`
+// function renderMelodyRow(melody){
+//     //refactor this like Pokemon Lab
+//     //Add Event Listeners here
+//     //Event Listeners get deleted when you HTML += 
+//     const melodyMarkup = `
+//         <tr data-id=${melody.id}>
+//             <td>${melody.attributes.title}</td>
+//             <td>${melody.attributes.key}</td>
+//             <td>${melody.attributes.user.name}</td>
+//             <td><button data-id=${melody.id}>Play</button></td>                      
+//         </tr>`
         
-    document.querySelector('#melody-container').innerHTML += melodyMarkup
+//     document.querySelector('#melody-container').innerHTML += melodyMarkup
+// }
+
+function renderMelodyRow(melody){
+
+    const melodyTable = document.querySelector("#melody-container")
+    const trMelody = document.createElement("tr")
+    const tdTitle = document.createElement("td")
+    const tdKey = document.createElement("td")
+    const tdUser = document.createElement("td")
+    const tdButton = document.createElement("td")
+    const playButton = document.createElement("button")
+
+    trMelody.setAttribute("data-id", melody.id)
+    tdTitle.innerHTML = melody.attributes.title
+    tdKey.innerHTML = melody.attributes.key
+    tdUser.innerHTML = melody.attributes.user.name
+    playButton.setAttribute("data-id", melody.id)
+    playButton.innerHTML = "Play"
+    playButton.addEventListener("click", (e) => getMelody(e))
+    tdButton.appendChild(playButton)
+    
+    trMelody.appendChild(tdTitle)
+    trMelody.appendChild(tdKey)
+    trMelody.appendChild(tdUser)
+    trMelody.appendChild(tdButton)
+    melodyTable.appendChild(trMelody)
 }
 
+
+
+//eliminate this after event listener is attached in refactored render function
 function attachEventListeners(melody) {
     let btn = document.querySelector(`button[data-id="${melody.id}"]`)
     
@@ -34,7 +72,7 @@ function attachEventListeners(melody) {
 }
 
 function getMelody(e) {
-    // right now this is with a fetch.  Eventually, it will get it from the JS Melody Class
+    // right now this is with a fetch.  Eventually, I will get it from the JS Melody Class
     fetch(endPoint + `/${e.target.dataset.id}`)
         .then(res => res.json())
         .then(melody => {
@@ -44,13 +82,40 @@ function getMelody(e) {
             //Will try with escape characters in the seed file.  Update:  that worked!
             melodyNotes = JSON.parse(melody.data.attributes.notes)
   
-            //melodyNotes = JSON.parse(melody.data.attributes.notes.replace(/'/g, '"'))
+            //melodyNotes = JSON.parse(melody.data.attributes.notes.replace(/'/g, '"')) don't need this for now. Just holding onto the RegEx!
 
             playMelody(melodyNotes)
-        
         })
 }
 
+
+
+function createFormHandler(e){
+    e.preventDefault()
+    const titleInput = document.querySelector("#input-title").value
+    const notesInput = document.querySelector("#input-notes").value
+    const keyInput = document.querySelector("#input-key").value
+    const userId = document.querySelector("#user-id").value
+    //const userId = parseInt(userInput) for inputting a new user
+    postMelody(titleInput, notesInput, keyInput, userId)
+}
+
+
+function postMelody(title, notes, key, user_id){
+    let bodyData = {title, notes, key, user_id}
+
+    fetch(endPoint, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(bodyData)
+    })
+    .then(res => res.json())
+    .then(melody => {
+        renderMelodyRow(melody.data)
+    })
+
+
+}
 
 
 
