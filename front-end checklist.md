@@ -138,7 +138,7 @@ The application we will create during the project build series is a "Syllabus Sh
 
 **Submit (POST) data _to_ the server**
 
-- [] 11. `POST` request
+- [x] 11. `POST` request
     - Create a new branch for `POST` implementation.
     - Create form
     - Create submit event listener
@@ -146,11 +146,11 @@ The application we will create during the project build series is a "Syllabus Sh
     - Create `post_____` function
     - Manipulate the DOM with "posted" JSON data
     - Once working: Commit and push this code! Then merge branch to master.
-- [ ] 12. `git pull` on the master branch to get working `GET` and `POST` functionality.
+- [x] 12. `git pull` on the master branch to get working `GET` and `POST` functionality.
 
 **Refactor to make your code more DRY**
 
-- [ ] 13. Make sure you're not repeating yourself unnecessarily in your code. Ex: Create a render function you can use in both your "read" and "create" functions.
+- [x] 13. Make sure you're not repeating yourself unnecessarily in your code. Ex: Create a render function you can use in both your "read" and "create" functions.
 - [ ] 14.  Build out any additional features using the JS Mantra: Event, Fetch, and DOM Manipulation flow as a guide.
 
 ### PART 4: OOJS Refactor
