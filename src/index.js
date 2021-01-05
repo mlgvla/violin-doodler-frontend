@@ -45,6 +45,7 @@ function renderMelodyRow(melody){
     const tdUser = document.createElement("td")
     const tdButton = document.createElement("td")
     const playButton = document.createElement("button")
+    const deleteButton = document.createElement("button")
 
     trMelody.setAttribute("data-id", melody.id)
     tdTitle.innerHTML = melody.attributes.title
@@ -53,7 +54,12 @@ function renderMelodyRow(melody){
     playButton.setAttribute("data-id", melody.id)
     playButton.innerHTML = "Play"
     playButton.addEventListener("click", (e) => getMelody(e))
+    deleteButton.setAttribute("data-id", melody.id)
+    deleteButton.innerHTML = "Delete"
+    deleteButton.addEventListener("click", (e) => deleteMelody(e))
+    
     tdButton.appendChild(playButton)
+    tdButton.appendChild(deleteButton)
     
     trMelody.appendChild(tdTitle)
     trMelody.appendChild(tdKey)
@@ -115,6 +121,22 @@ function postMelody(title, notes, key, user_id){
     })
 
 
+}
+
+function deleteMelody(e) {
+    const confirm = window.confirm("Are you sure you want to delete this melody?")
+    if (confirm == true) {
+        e.preventDefault()
+        const configObj = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        }
+        fetch(endPoint + `/${e.target.dataset.id}`, configObj)
+        e.target.parentElement.parentElement.remove()  
+    }    
 }
 
 
