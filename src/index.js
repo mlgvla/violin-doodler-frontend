@@ -15,7 +15,7 @@ function getMelodies() {
             console.log(melodies.data)
             melodies.data.forEach(melody => renderMelodyRow(melody))
 
-            //**use melodies.data in a call to renderUserSelect(melodi), which populates the select box
+            //**use melodies.data in a call to renderUserSelect(melody), which populates the select box
             //in the form with all current users - do this in the User Class, maybe?**
 
             //eliminate this after I refactor rendorMelodyRow to use
