@@ -39,21 +39,29 @@ function getMelodies() {
 //     btn.addEventListener("click", (e) =>  getMelody(e))
 // }
 
-function getMelody(e) {
-    // right now this is with a fetch.  Eventually, I will get it from the JS Melody Class
-    fetch(endPoint + `/${e.target.dataset.id}`)
-        .then(res => res.json())
-        .then(melody => {
-            //must get rid of outer quotes!!
-            //JSON require string literals to be in double quotes in order to parse!!!  But in order to
-            //store as a string of nested arrays, I need the single quotes in the seed file.  The Regex makes it parsable!
-            //Will try with escape characters in the seed file.  Update:  that worked!
-            melodyNotes = JSON.parse(melody.data.attributes.notes)
+// function getMelody(e) {
+//     // right now this is with a fetch.  Eventually, I will get it from the JS Melody Class
+//     fetch(endPoint + `/${e.target.dataset.id}`)
+//         .then(res => res.json())
+//         .then(melody => {
+//             //must get rid of outer quotes!!
+//             //JSON require string literals to be in double quotes in order to parse!!!  But in order to
+//             //store as a string of nested arrays, I need the single quotes in the seed file.  The Regex makes it parsable!
+//             //Will try with escape characters in the seed file.  Update:  that worked!
+//             melodyNotes = JSON.parse(melody.data.attributes.notes)
   
-            //melodyNotes = JSON.parse(melody.data.attributes.notes.replace(/'/g, '"')) don't need this for now. Just holding onto the RegEx!
+//             //melodyNotes = JSON.parse(melody.data.attributes.notes.replace(/'/g, '"')) don't need this for now. Just holding onto the RegEx!
+//             debugger
+//             playMelody(melodyNotes)
+//         })
+// }
 
-            playMelody(melodyNotes)
-        })
+
+// Using Melody Class to access Melody instead of fetch call
+
+function getMelody(e) {
+    melodyNotes = JSON.parse(Melody.findById(e.target.dataset.id).notes)
+    playMelody(melodyNotes)
 }
 
 

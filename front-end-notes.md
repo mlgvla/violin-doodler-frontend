@@ -1,9 +1,13 @@
 Stretch Goals:
 
-2 Modes:  Practice Mode and Compose Mode
+2 Modes:  Practice Mode and Compose Mode for Violin div
     - button group - one or the other selected
     - 2 different event listeners
-    - remove the other event listner on mode change (toggle event listeners)
+    - remove the other violin element event listner on mode change (toggle event listeners)
+    - on change (radio button) add proper event listener to violin div
+    - remember to remove any existing event listeners for violin div
+    - put radio buttons in div and attach event listener to div.
+    - use if or switch to set proper event listener for violin div
 
 Practice Mode
     - notes respond to mouseDown and mouseUp events
