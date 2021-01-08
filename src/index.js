@@ -13,7 +13,11 @@ function getMelodies() {
         .then(res => res.json())
         .then(melodies => {
             console.log(melodies.data)
-            melodies.data.forEach(melody => renderMelodyRow(melody))
+            melodies.data.forEach(melody => {
+                const newMelody = new Melody(melody.id, melody.attributes)
+                newMelody.renderMelodyRow()
+            })
+            
 
             //**use melodies.data in a call to renderUserSelect(melody), which populates the select box
             //in the form with all current users - do this in the User Class, maybe?**
@@ -21,7 +25,7 @@ function getMelodies() {
             //eliminate this after I refactor rendorMelodyRow to use
             // createElements and AppendChilds
             //melodies.data.forEach(melody => attachEventListeners(melody))           
-        });
+        })
 }
 
 // function renderMelodyRow(melody){
@@ -39,37 +43,37 @@ function getMelodies() {
 //     document.querySelector('#melody-container').innerHTML += melodyMarkup
 // }
 
-function renderMelodyRow(melody){
+// function renderMelodyRow(melody){
 
-    const melodyTable = document.querySelector("#melody-container")
-    const trMelody = document.createElement("tr")
-    const tdTitle = document.createElement("td")
-    const tdKey = document.createElement("td")
-    const tdUser = document.createElement("td")
-    const tdButton = document.createElement("td")
-    const playButton = document.createElement("button")
-    const deleteButton = document.createElement("button")
+//     const melodyTable = document.querySelector("#melody-container")
+//     const trMelody = document.createElement("tr")
+//     const tdTitle = document.createElement("td")
+//     const tdKey = document.createElement("td")
+//     const tdUser = document.createElement("td")
+//     const tdButton = document.createElement("td")
+//     const playButton = document.createElement("button")
+//     const deleteButton = document.createElement("button")
 
-    trMelody.setAttribute("data-id", melody.id)
-    tdTitle.innerHTML = melody.attributes.title
-    tdKey.innerHTML = melody.attributes.key
-    tdUser.innerHTML = melody.attributes.user.name
-    playButton.setAttribute("data-id", melody.id)
-    playButton.innerHTML = "Play"
-    playButton.addEventListener("click", (e) => getMelody(e))
-    deleteButton.setAttribute("data-id", melody.id)
-    deleteButton.innerHTML = "Delete"
-    deleteButton.addEventListener("click", (e) => deleteMelody(e))
+//     trMelody.setAttribute("data-id", melody.id)
+//     tdTitle.innerHTML = melody.attributes.title
+//     tdKey.innerHTML = melody.attributes.key
+//     tdUser.innerHTML = melody.attributes.user.name
+//     playButton.setAttribute("data-id", melody.id)
+//     playButton.innerHTML = "Play"
+//     playButton.addEventListener("click", (e) => getMelody(e))
+//     deleteButton.setAttribute("data-id", melody.id)
+//     deleteButton.innerHTML = "Delete"
+//     deleteButton.addEventListener("click", (e) => deleteMelody(e))
     
-    tdButton.appendChild(playButton)
-    tdButton.appendChild(deleteButton)
+//     tdButton.appendChild(playButton)
+//     tdButton.appendChild(deleteButton)
     
-    trMelody.appendChild(tdTitle)
-    trMelody.appendChild(tdKey)
-    trMelody.appendChild(tdUser)
-    trMelody.appendChild(tdButton)
-    melodyTable.appendChild(trMelody)
-}
+//     trMelody.appendChild(tdTitle)
+//     trMelody.appendChild(tdKey)
+//     trMelody.appendChild(tdUser)
+//     trMelody.appendChild(tdButton)
+//     melodyTable.appendChild(trMelody)
+// }
 
 
 
