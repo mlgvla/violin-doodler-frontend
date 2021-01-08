@@ -18,7 +18,8 @@ class Melody {
         const tdButton = document.createElement("td")
         const playButton = document.createElement("button")
         const deleteButton = document.createElement("button")
-    
+
+        //don't need .attributes since they are parameters in constructor
         trMelody.setAttribute("data-id", this.id)
         tdTitle.innerHTML = this.title
         tdKey.innerHTML = this.key
