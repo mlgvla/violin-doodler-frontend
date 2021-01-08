@@ -40,5 +40,13 @@ class Melody {
         trMelody.appendChild(tdButton)
         melodyTable.appendChild(trMelody)
     }
+
+    static findById(id) {
+        return this.all.find(melody => melody.id === id)
+    }
+    
+    static deleteById(id) {
+        // use findIndex() and then splice
+    }
 }
 Melody.all = []

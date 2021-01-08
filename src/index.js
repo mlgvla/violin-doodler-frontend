@@ -115,7 +115,7 @@ function createFormHandler(e){
 
 
 function postMelody(title, notes, key, user_id){
-    let bodyData = {title, notes, key, user_id}
+    const bodyData = {title, notes, key, user_id}
 
     fetch(endPoint, {
         method: "POST",
@@ -124,10 +124,10 @@ function postMelody(title, notes, key, user_id){
     })
     .then(res => res.json())
     .then(melody => {
-        renderMelodyRow(melody.data)
+        const newMelody = new Melody(melody.data.id, melody.data.attributes)
+        newMelody.renderMelodyRow()
     })
-
-
+    document.querySelector("#create-melody-form").reset()
 }
 
 function deleteMelody(e) {
@@ -142,7 +142,10 @@ function deleteMelody(e) {
             }
         }
         fetch(endPoint + `/${e.target.dataset.id}`, configObj)
-        e.target.parentElement.parentElement.remove()  
+        e.target.parentElement.parentElement.remove() 
+        
+    // Make sure to delete same Melody from Melody.all
+    // This can be done once I write a find method in the Melody Class
     }    
 }
 
