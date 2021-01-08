@@ -28,61 +28,16 @@ function getMelodies() {
         })
 }
 
-// function renderMelodyRow(melody){
-//     //refactor this like Pokemon Lab
-//     //Add Event Listeners here
-//     //Event Listeners get deleted when you HTML += 
-//     const melodyMarkup = `
-//         <tr data-id=${melody.id}>
-//             <td>${melody.attributes.title}</td>
-//             <td>${melody.attributes.key}</td>
-//             <td>${melody.attributes.user.name}</td>
-//             <td><button data-id=${melody.id}>Play</button></td>                      
-//         </tr>`
-        
-//     document.querySelector('#melody-container').innerHTML += melodyMarkup
-// }
 
-// function renderMelodyRow(melody){
-
-//     const melodyTable = document.querySelector("#melody-container")
-//     const trMelody = document.createElement("tr")
-//     const tdTitle = document.createElement("td")
-//     const tdKey = document.createElement("td")
-//     const tdUser = document.createElement("td")
-//     const tdButton = document.createElement("td")
-//     const playButton = document.createElement("button")
-//     const deleteButton = document.createElement("button")
-
-//     trMelody.setAttribute("data-id", melody.id)
-//     tdTitle.innerHTML = melody.attributes.title
-//     tdKey.innerHTML = melody.attributes.key
-//     tdUser.innerHTML = melody.attributes.user.name
-//     playButton.setAttribute("data-id", melody.id)
-//     playButton.innerHTML = "Play"
-//     playButton.addEventListener("click", (e) => getMelody(e))
-//     deleteButton.setAttribute("data-id", melody.id)
-//     deleteButton.innerHTML = "Delete"
-//     deleteButton.addEventListener("click", (e) => deleteMelody(e))
-    
-//     tdButton.appendChild(playButton)
-//     tdButton.appendChild(deleteButton)
-    
-//     trMelody.appendChild(tdTitle)
-//     trMelody.appendChild(tdKey)
-//     trMelody.appendChild(tdUser)
-//     trMelody.appendChild(tdButton)
-//     melodyTable.appendChild(trMelody)
-// }
 
 
 
 //eliminate this after event listener is attached in refactored render function
-function attachEventListeners(melody) {
-    let btn = document.querySelector(`button[data-id="${melody.id}"]`)
+// function attachEventListeners(melody) {
+//     let btn = document.querySelector(`button[data-id="${melody.id}"]`)
     
-    btn.addEventListener("click", (e) =>  getMelody(e))
-}
+//     btn.addEventListener("click", (e) =>  getMelody(e))
+// }
 
 function getMelody(e) {
     // right now this is with a fetch.  Eventually, I will get it from the JS Melody Class
@@ -142,10 +97,9 @@ function deleteMelody(e) {
             }
         }
         fetch(endPoint + `/${e.target.dataset.id}`, configObj)
-        e.target.parentElement.parentElement.remove() 
-        
-    // Make sure to delete same Melody from Melody.all
-    // This can be done once I write a find method in the Melody Class
+        e.target.parentElement.parentElement.remove()
+        // also remove from Melody.all
+        Melody.deleteById(e.target.dataset.id) 
     }    
 }
 

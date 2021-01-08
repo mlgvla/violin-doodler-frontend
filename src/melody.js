@@ -46,7 +46,11 @@ class Melody {
     }
     
     static deleteById(id) {
-        // use findIndex() and then splice
+        //removes deleted Melody from class array
+        //id comes in as integer  - convert to string
+        const isEqualTo = (melody) => melody.id === id.toString()
+        const deleteMelodyIndex= (this.all.findIndex(isEqualTo))
+        this.all.splice(deleteMelodyIndex, 1)
     }
 }
 Melody.all = []
