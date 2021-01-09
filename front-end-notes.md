@@ -1,6 +1,6 @@
 Stretch Goals:
 Must Have:
-[] Practice Mode
+[x] Practice Mode
     - notes respond to mouseDown and mouseUp events
     - const synth should be global because it is accessed by several functions - evenutally moved to violin class?
 
@@ -15,6 +15,9 @@ Must Have:
     - alphabetize
 
 Would be nice:
+
+Designate BPM
+
 2 Modes:  Practice Mode and Compose Mode for Violin div
     - button group - one or the other selected
     - 2 different event listeners

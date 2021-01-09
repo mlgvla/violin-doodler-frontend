@@ -1,4 +1,5 @@
 const endPoint = "http://localhost:3000/api/v1/melodies"
+const synth = new Tone.Synth().toDestination();
 
 document.addEventListener("DOMContentLoaded", () => {
     getMelodies()
@@ -125,13 +126,14 @@ function deleteMelody(e) {
 
 const violin = document.querySelector(".violin")
 
-violin.addEventListener("click", (e) => {
-   console.log(e.target.dataset.note)
-   playNote(e.target.dataset.note)
- }) // click on a note bubbles up to violin!!!!  Very cool!!!
+// violin.addEventListener("click", (e) => {
+//    console.log(e.target.dataset.note)
+//    playNote(e.target.dataset.note)
+//  }) // click on a note bubbles up to violin!!!!  Very cool!!!
     // change to mouseDown and mouseUp listeners with noteOn and noteOff handlers
 
-
+violin.addEventListener("mousedown", e => playNote(e.target.dataset.note))
+violin.addEventListener("mouseup", e =>  synth.triggerRelease())
 
 // play.addEventListener("click", async () => {
     
@@ -141,9 +143,8 @@ violin.addEventListener("click", (e) => {
 // })
 
 async function playNote(note){
-    await Tone.start()
-    const synth = new Tone.Synth().toDestination();
-    synth.triggerAttackRelease(note, "8n")
+    await Tone.start()  
+    synth.triggerAttack(note);
 }
 
 
@@ -163,7 +164,7 @@ async function playNote(note){
 async function playMelody(melody) {  // will eventually play .this
 
     await Tone.start()
-    const synth = new Tone.Synth().toMaster();
+    //const synth = new Tone.Synth().toMaster();
     Tone.Transport.bpm.value = 120;
 
     let t = Tone.now();
