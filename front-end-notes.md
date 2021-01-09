@@ -1,5 +1,20 @@
 Stretch Goals:
+Must Have:
+[] Practice Mode
+    - notes respond to mouseDown and mouseUp events
+    - const synth should be global because it is accessed by several functions - evenutally moved to violin class?
 
+[] Animation
+
+[] Fingerboard Customization
+    - choose which string(s) to display
+    - choose which notes (by key) to display:  A major, D major, G major
+
+[] User class
+    - populate select box with all students upon DOM Content Load - can maybe do without extra fetch?
+    - alphabetize
+
+Would be nice:
 2 Modes:  Practice Mode and Compose Mode for Violin div
     - button group - one or the other selected
     - 2 different event listeners
@@ -9,16 +24,10 @@ Stretch Goals:
     - put radio buttons in div and attach event listener to div.
     - use if or switch to set proper event listener for violin div
 
-Practice Mode
-    - notes respond to mouseDown and mouseUp events
-
 Compose Mode
     - select note value
     - click on desired note
     - note with vallue pushed onto array in text area box.  Can be edited before submission
 
-Fingerboard Customization
-    - choose which string(s) to display
-    - choose which notes (by key) to display:  A major, D major, G major
 
 
