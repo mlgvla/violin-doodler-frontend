@@ -13,7 +13,11 @@ function getMelodies() {
         .then(res => res.json())
         .then(melodies => {
             console.log(melodies.data)
-            melodies.data.forEach(melody => renderMelodyRow(melody))
+            melodies.data.forEach(melody => {
+                const newMelody = new Melody(melody.id, melody.attributes)
+                newMelody.renderMelodyRow()
+            })
+            
 
             //**use melodies.data in a call to renderUserSelect(melody), which populates the select box
             //in the form with all current users - do this in the User Class, maybe?**
@@ -21,80 +25,43 @@ function getMelodies() {
             //eliminate this after I refactor rendorMelodyRow to use
             // createElements and AppendChilds
             //melodies.data.forEach(melody => attachEventListeners(melody))           
-        });
+        })
 }
 
-// function renderMelodyRow(melody){
-//     //refactor this like Pokemon Lab
-//     //Add Event Listeners here
-//     //Event Listeners get deleted when you HTML += 
-//     const melodyMarkup = `
-//         <tr data-id=${melody.id}>
-//             <td>${melody.attributes.title}</td>
-//             <td>${melody.attributes.key}</td>
-//             <td>${melody.attributes.user.name}</td>
-//             <td><button data-id=${melody.id}>Play</button></td>                      
-//         </tr>`
-        
-//     document.querySelector('#melody-container').innerHTML += melodyMarkup
-// }
 
-function renderMelodyRow(melody){
-
-    const melodyTable = document.querySelector("#melody-container")
-    const trMelody = document.createElement("tr")
-    const tdTitle = document.createElement("td")
-    const tdKey = document.createElement("td")
-    const tdUser = document.createElement("td")
-    const tdButton = document.createElement("td")
-    const playButton = document.createElement("button")
-    const deleteButton = document.createElement("button")
-
-    trMelody.setAttribute("data-id", melody.id)
-    tdTitle.innerHTML = melody.attributes.title
-    tdKey.innerHTML = melody.attributes.key
-    tdUser.innerHTML = melody.attributes.user.name
-    playButton.setAttribute("data-id", melody.id)
-    playButton.innerHTML = "Play"
-    playButton.addEventListener("click", (e) => getMelody(e))
-    deleteButton.setAttribute("data-id", melody.id)
-    deleteButton.innerHTML = "Delete"
-    deleteButton.addEventListener("click", (e) => deleteMelody(e))
-    
-    tdButton.appendChild(playButton)
-    tdButton.appendChild(deleteButton)
-    
-    trMelody.appendChild(tdTitle)
-    trMelody.appendChild(tdKey)
-    trMelody.appendChild(tdUser)
-    trMelody.appendChild(tdButton)
-    melodyTable.appendChild(trMelody)
-}
 
 
 
 //eliminate this after event listener is attached in refactored render function
-function attachEventListeners(melody) {
-    let btn = document.querySelector(`button[data-id="${melody.id}"]`)
+// function attachEventListeners(melody) {
+//     let btn = document.querySelector(`button[data-id="${melody.id}"]`)
     
-    btn.addEventListener("click", (e) =>  getMelody(e))
-}
+//     btn.addEventListener("click", (e) =>  getMelody(e))
+// }
+
+// function getMelody(e) {
+//     // right now this is with a fetch.  Eventually, I will get it from the JS Melody Class
+//     fetch(endPoint + `/${e.target.dataset.id}`)
+//         .then(res => res.json())
+//         .then(melody => {
+//             //must get rid of outer quotes!!
+//             //JSON require string literals to be in double quotes in order to parse!!!  But in order to
+//             //store as a string of nested arrays, I need the single quotes in the seed file.  The Regex makes it parsable!
+//             //Will try with escape characters in the seed file.  Update:  that worked!
+//             melodyNotes = JSON.parse(melody.data.attributes.notes)
+  
+//             //melodyNotes = JSON.parse(melody.data.attributes.notes.replace(/'/g, '"')) don't need this for now. Just holding onto the RegEx!
+//             debugger
+//             playMelody(melodyNotes)
+//         })
+// }
+
+
+// Using Melody Class to access Melody instead of fetch call
 
 function getMelody(e) {
-    // right now this is with a fetch.  Eventually, I will get it from the JS Melody Class
-    fetch(endPoint + `/${e.target.dataset.id}`)
-        .then(res => res.json())
-        .then(melody => {
-            //must get rid of outer quotes!!
-            //JSON require string literals to be in double quotes in order to parse!!!  But in order to
-            //store as a string of nested arrays, I need the single quotes in the seed file.  The Regex makes it parsable!
-            //Will try with escape characters in the seed file.  Update:  that worked!
-            melodyNotes = JSON.parse(melody.data.attributes.notes)
-  
-            //melodyNotes = JSON.parse(melody.data.attributes.notes.replace(/'/g, '"')) don't need this for now. Just holding onto the RegEx!
-
-            playMelody(melodyNotes)
-        })
+    melodyNotes = JSON.parse(Melody.findById(e.target.dataset.id).notes)
+    playMelody(melodyNotes)
 }
 
 
@@ -111,7 +78,7 @@ function createFormHandler(e){
 
 
 function postMelody(title, notes, key, user_id){
-    let bodyData = {title, notes, key, user_id}
+    const bodyData = {title, notes, key, user_id}
 
     fetch(endPoint, {
         method: "POST",
@@ -120,10 +87,10 @@ function postMelody(title, notes, key, user_id){
     })
     .then(res => res.json())
     .then(melody => {
-        renderMelodyRow(melody.data)
+        const newMelody = new Melody(melody.data.id, melody.data.attributes)
+        newMelody.renderMelodyRow()
     })
-
-
+    document.querySelector("#create-melody-form").reset()
 }
 
 function deleteMelody(e) {
@@ -138,7 +105,9 @@ function deleteMelody(e) {
             }
         }
         fetch(endPoint + `/${e.target.dataset.id}`, configObj)
-        e.target.parentElement.parentElement.remove()  
+        e.target.parentElement.parentElement.remove()
+        // also remove from Melody.all
+        Melody.deleteById(e.target.dataset.id) 
     }    
 }
 

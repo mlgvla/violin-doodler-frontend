@@ -151,15 +151,15 @@ The application we will create during the project build series is a "Syllabus Sh
 **Refactor to make your code more DRY**
 
 - [x] 13. Make sure you're not repeating yourself unnecessarily in your code. Ex: Create a render function you can use in both your "read" and "create" functions.
-- [ ] 14.  Build out any additional features using the JS Mantra: Event, Fetch, and DOM Manipulation flow as a guide.
+- [x] 14.  Build out any additional features using the JS Mantra: Event, Fetch, and DOM Manipulation flow as a guide.
 
 ### PART 4: OOJS Refactor
-- [] 1. _IMPORTANT:_ Create a separate branch for your OOJS Refactor
-- [] 2. Create a JS Class (ex: `class Syllabus`)
-- [] 3. Link to the new JS file in your `index.html` (ex: `<script type="text/javascript" src="src/syllabus.js"></script>`)
-- [] 4. Create a constructor that pushes all instances of `this` into an empty array (See part 4 notes for example)
-- [] 5. Refactor render functionality by creating a render function in your JS class
-- [ ] 6. For future use, create a static method in your JS class that finds an object based on it's id. (In the PART 4 notes we see how this would be useful for 'update/`PATCH`' functionality)
+- [x] 1. _IMPORTANT:_ Create a separate branch for your OOJS Refactor
+- [x] 2. Create a JS Class (ex: `class Syllabus`)
+- [x] 3. Link to the new JS file in your `index.html` (ex: `<script type="text/javascript" src="src/syllabus.js"></script>`)
+- [x] 4. Create a constructor that pushes all instances of `this` into an empty array (See part 4 notes for example)
+- [x] 5. Refactor render functionality by creating a render function in your JS class
+- [x] 6. For future use, create a static method in your JS class that finds an object based on it's id. (In the PART 4 notes we see how this would be useful for 'update/`PATCH`' functionality)
 
 ### Bonus
 - [ ] Leverage a CSS framework to improve the styling of your application
