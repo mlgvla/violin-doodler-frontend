@@ -201,19 +201,39 @@ async function playMelody(melody) {
     Tone.Transport.schedule((time) => {
 
         let t = time
+        let oldEl;
+        
 
         for (let i = 0; i < melody.length; i++) {
             let note = melody[i]
-
+            let el = document.querySelector(`[data-note="${note[0]}"]`)       
+            
             if (note[0] !== "rest") {
                 synth.triggerAttackRelease(note[0], Tone.Time(note[1]) - 0.1, t)
+                Tone.Draw.schedule(() => {
+                    if (i === 0) {
+                        el.style.filter = "brightness(130%) saturate(110%)" 
+                        oldEl = el
+                    }
+                    else {
+                        console.log(oldEl)
+                        oldEl.removeAttribute("style")
+                        console.log(el)
+                        el.style.filter = "brightness(160%) saturate(110%)"
+                        oldEl = el 
+                    }
+                }, t)  //write a callback function to handle the DOM Manipulation    
             }
-            t += Tone.Time(note[1])       
+            t += Tone.Time(note[1])
+            
         }
-        
+        let lastNote = melody[melody.length -1][0]
+       
+       
     }, 0) //end of Transport.schedule
 
     Tone.Transport.start()
+    document.querySelector(`[data-note="${lastNote}"]`).removeAttribute("style")
 }
 
 
