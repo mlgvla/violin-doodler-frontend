@@ -1,4 +1,5 @@
 const endPoint = "http://localhost:3000/api/v1/melodies"
+const synth = new Tone.Synth().toDestination();
 
 document.addEventListener("DOMContentLoaded", () => {
     getMelodies()
@@ -125,13 +126,14 @@ function deleteMelody(e) {
 
 const violin = document.querySelector(".violin")
 
-violin.addEventListener("click", (e) => {
-   console.log(e.target.dataset.note)
-   playNote(e.target.dataset.note)
- }) // click on a note bubbles up to violin!!!!  Very cool!!!
+// violin.addEventListener("click", (e) => {
+//    console.log(e.target.dataset.note)
+//    playNote(e.target.dataset.note)
+//  }) // click on a note bubbles up to violin!!!!  Very cool!!!
     // change to mouseDown and mouseUp listeners with noteOn and noteOff handlers
 
-
+violin.addEventListener("mousedown", e => playNote(e.target.dataset.note))
+violin.addEventListener("mouseup", e =>  synth.triggerRelease())
 
 // play.addEventListener("click", async () => {
     
@@ -141,9 +143,8 @@ violin.addEventListener("click", (e) => {
 // })
 
 async function playNote(note){
-    await Tone.start()
-    const synth = new Tone.Synth().toDestination();
-    synth.triggerAttackRelease(note, "8n")
+    await Tone.start()  
+    synth.triggerAttack(note);
 }
 
 
@@ -160,31 +161,82 @@ async function playNote(note){
 // playNote - helps playMelody - implement mousedown/mouseup to doodle
 // consider renaming parent divs g-string, d-string, etc.
 
-async function playMelody(melody) {  // will eventually play .this
+// async function playMelody(melody) {  // will eventually play .this
 
-    await Tone.start()
-    const synth = new Tone.Synth().toMaster();
-    Tone.Transport.bpm.value = 120;
+//     await Tone.start()
+//     //const synth = new Tone.Synth().toMaster();
+//     Tone.Transport.bpm.value = 120;
 
-    let t = Tone.now();
+//     let t = Tone.now();
  
-    for (const note of melody) {
-        //let el = document.querySelector(`[data-note="${note[0]}"]`)
-        if (note[0] !== "rest") {
-            //synth.triggerAttackRelease(note[0], note[1], t);
-           //el.style.filter = "brightness(130%) saturate(110%)"
+//     for (const note of melody) {
+//         //let el = document.querySelector(`[data-note="${note[0]}"]`)
+//         if (note[0] !== "rest") {
+//             //synth.triggerAttackRelease(note[0], note[1], t);
+//            //el.style.filter = "brightness(130%) saturate(110%)"
             
-            //Experiment using separate triggerAttack and triggerRelease for animation?
-            synth.triggerAttackRelease(note[0], Tone.Time(note[1]) - 0.1, t);
-          //setTimeout(function (){ el.removeAttribute("style") }, Tone.Time(note[1]).toMilliseconds())//set equal to note length
+//             //Experiment using separate triggerAttack and triggerRelease for animation?
+//             synth.triggerAttackRelease(note[0], Tone.Time(note[1]) - 0.1, t);
+//           //setTimeout(function (){ el.removeAttribute("style") }, Tone.Time(note[1]).toMilliseconds())//set equal to note length
            
-        }
-    t += Tone.Time(note[1]);
-    //setTimeout(function (){ el.removeAttribute("style") }, Tone.Time(note[1]).toMilliseconds())//set equal to 
+//         }
+//     t += Tone.Time(note[1]);
+//     //setTimeout(function (){ el.removeAttribute("style") }, Tone.Time(note[1]).toMilliseconds())//set equal to 
 
-  }
+//   }  
+// }
 
-  
+async function playMelody(melody) {
+    await Tone.start() 
+
+    console.log("audio is ready")
+    
+    // Stop the Transport, position to 0, cancel any scheduled events
+    Tone.Transport.stop();
+    Tone.Transport.position = 0;
+    Tone.Transport.cancel();
+
+    Tone.Transport.bpm.value = 120; // eventually make this user-defined
+
+    Tone.Transport.schedule((time) => {
+
+        let t = time
+        let oldEl;
+        let lastTime; // need in order to schedule removing style from last note
+        
+
+        for (let i = 0; i < melody.length; i++) {
+            let note = melody[i]
+            let el = document.querySelector(`[data-note="${note[0]}"]`)       
+            
+            if (note[0] !== "rest") {
+                synth.triggerAttackRelease(note[0], Tone.Time(note[1]) - 0.1, t)
+                Tone.Draw.schedule(() => {
+                    if (i === 0) {
+                        el.style.filter = "brightness(130%) saturate(110%)" 
+                        oldEl = el
+                    }
+                    else {
+                        console.log(oldEl)
+                        oldEl.removeAttribute("style")
+                        console.log(el)
+                        el.style.filter = "brightness(160%) saturate(110%)"
+                        oldEl = el 
+                    }
+                }, t)  //write a callback function to handle the DOM Manipulation    
+            }
+            t += Tone.Time(note[1])
+            lastTime = t
+            
+        }// end of for loop
+        // schedule removing style from last note
+        Tone.Draw.schedule(() => {
+            let lastNote = melody[melody.length -1][0]
+            document.querySelector(`[data-note="${lastNote}"]`).removeAttribute("style")
+        }, lastTime)
+    }, 0) //end of Transport.schedule
+
+    Tone.Transport.start()   
 }
 
 

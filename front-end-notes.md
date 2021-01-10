@@ -1,20 +1,26 @@
 Stretch Goals:
 Must Have:
-[] Practice Mode
-    - notes respond to mouseDown and mouseUp events
-    - const synth should be global because it is accessed by several functions - evenutally moved to violin class?
+[ ] Practice Mode
+    [x] notes respond to mouseDown and mouseUp events
+    [x] const synth should be global because it is accessed by several functions - evenutally moved to violin class?
+    [ ] add hover listener specific to open strings - will trump the violin listener because it's more specific
 
-[] Animation
+[ ] Animation
+    [x] note highlight synced with sound
+    [ ] show open strings highlighting
 
-[] Fingerboard Customization
-    - choose which string(s) to display
-    - choose which notes (by key) to display:  A major, D major, G major
+[ ] Fingerboard Customization
+    [ ] choose which string(s) to display
+    [ ] choose which notes (by key) to display:  A major, D major, G major
 
-[] User class
-    - populate select box with all students upon DOM Content Load - can maybe do without extra fetch?
-    - alphabetize
+[ ] User class
+    [ ] populate select box with all students upon DOM Content Load - can maybe do without extra fetch?
+    [ ] alphabetize
 
 Would be nice:
+
+Designate BPM
+
 2 Modes:  Practice Mode and Compose Mode for Violin div
     - button group - one or the other selected
     - 2 different event listeners
