@@ -202,6 +202,7 @@ async function playMelody(melody) {
 
         let t = time
         let oldEl;
+        let lastTime; // need in order to schedule removing style from last note
         
 
         for (let i = 0; i < melody.length; i++) {
@@ -225,15 +226,17 @@ async function playMelody(melody) {
                 }, t)  //write a callback function to handle the DOM Manipulation    
             }
             t += Tone.Time(note[1])
+            lastTime = t
             
-        }
-        let lastNote = melody[melody.length -1][0]
-       
-       
+        }// end of for loop
+        // schedule removing style from last note
+        Tone.Draw.schedule(() => {
+            let lastNote = melody[melody.length -1][0]
+            document.querySelector(`[data-note="${lastNote}"]`).removeAttribute("style")
+        }, lastTime)
     }, 0) //end of Transport.schedule
 
-    Tone.Transport.start()
-    document.querySelector(`[data-note="${lastNote}"]`).removeAttribute("style")
+    Tone.Transport.start()   
 }
 
 
