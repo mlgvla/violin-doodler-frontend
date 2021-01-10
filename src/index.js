@@ -161,31 +161,59 @@ async function playNote(note){
 // playNote - helps playMelody - implement mousedown/mouseup to doodle
 // consider renaming parent divs g-string, d-string, etc.
 
-async function playMelody(melody) {  // will eventually play .this
+// async function playMelody(melody) {  // will eventually play .this
 
-    await Tone.start()
-    //const synth = new Tone.Synth().toMaster();
-    Tone.Transport.bpm.value = 120;
+//     await Tone.start()
+//     //const synth = new Tone.Synth().toMaster();
+//     Tone.Transport.bpm.value = 120;
 
-    let t = Tone.now();
+//     let t = Tone.now();
  
-    for (const note of melody) {
-        //let el = document.querySelector(`[data-note="${note[0]}"]`)
-        if (note[0] !== "rest") {
-            //synth.triggerAttackRelease(note[0], note[1], t);
-           //el.style.filter = "brightness(130%) saturate(110%)"
+//     for (const note of melody) {
+//         //let el = document.querySelector(`[data-note="${note[0]}"]`)
+//         if (note[0] !== "rest") {
+//             //synth.triggerAttackRelease(note[0], note[1], t);
+//            //el.style.filter = "brightness(130%) saturate(110%)"
             
-            //Experiment using separate triggerAttack and triggerRelease for animation?
-            synth.triggerAttackRelease(note[0], Tone.Time(note[1]) - 0.1, t);
-          //setTimeout(function (){ el.removeAttribute("style") }, Tone.Time(note[1]).toMilliseconds())//set equal to note length
+//             //Experiment using separate triggerAttack and triggerRelease for animation?
+//             synth.triggerAttackRelease(note[0], Tone.Time(note[1]) - 0.1, t);
+//           //setTimeout(function (){ el.removeAttribute("style") }, Tone.Time(note[1]).toMilliseconds())//set equal to note length
            
+//         }
+//     t += Tone.Time(note[1]);
+//     //setTimeout(function (){ el.removeAttribute("style") }, Tone.Time(note[1]).toMilliseconds())//set equal to 
+
+//   }  
+// }
+
+async function playMelody(melody) {
+    await Tone.start() 
+
+    console.log("audio is ready")
+    
+    // Stop the Transport, position to 0, cancel any scheduled events
+    Tone.Transport.stop();
+    Tone.Transport.position = 0;
+    Tone.Transport.cancel();
+
+    Tone.Transport.bpm.value = 120; // eventually make this user-defined
+
+    Tone.Transport.schedule((time) => {
+
+        let t = time
+
+        for (let i = 0; i < melody.length; i++) {
+            let note = melody[i]
+
+            if (note[0] !== "rest") {
+                synth.triggerAttackRelease(note[0], Tone.Time(note[1]) - 0.1, t)
+            }
+            t += Tone.Time(note[1])       
         }
-    t += Tone.Time(note[1]);
-    //setTimeout(function (){ el.removeAttribute("style") }, Tone.Time(note[1]).toMilliseconds())//set equal to 
+        
+    }, 0) //end of Transport.schedule
 
-  }
-
-  
+    Tone.Transport.start()
 }
 
 

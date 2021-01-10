@@ -26,7 +26,7 @@ class Melody {
         tdUser.innerHTML = this.user.name
         playButton.setAttribute("data-id", this.id)
         playButton.innerHTML = "Play"
-        playButton.addEventListener("click", (e) => getMelody(e))
+        playButton.addEventListener("click", (e) => getMelody(e))        
         deleteButton.setAttribute("data-id", this.id)
         deleteButton.innerHTML = "Delete"
         deleteButton.addEventListener("click", (e) => deleteMelody(e))
