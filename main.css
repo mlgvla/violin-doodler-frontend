@@ -67,7 +67,7 @@
 }
 
 .open-strings:hover{
-    filter: brightness(130%) saturate(110%); 
+    filter: brightness(160%) saturate(110%); 
 }
 
 .note {
@@ -92,7 +92,7 @@
 }
 
 .note:hover{
-    filter: brightness(130%) saturate(110%); 
+    filter: brightness(160%) saturate(110%); 
 }
 .border{
     border: 3px; 

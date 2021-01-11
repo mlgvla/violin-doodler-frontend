@@ -207,7 +207,7 @@ async function playMelody(melody) {
 
         for (let i = 0; i < melody.length; i++) {
             let note = melody[i]
-            let el = document.querySelector(`[data-note="${note[0]}"]`)       
+            let el = document.querySelector(`[data-note="${note[0]}"]`) // if D4, A4, or E5, just have open string light up. 4th finger can be an option later on.    
             
             if (note[0] !== "rest") {
                 synth.triggerAttackRelease(note[0], Tone.Time(note[1]) - 0.1, t)
@@ -217,16 +217,16 @@ async function playMelody(melody) {
                         oldEl = el
                     }
                     else {
-                        console.log(oldEl)
+                        //console.log(oldEl)
                         oldEl.removeAttribute("style")
-                        console.log(el)
+                        //console.log(el)
                         el.style.filter = "brightness(160%) saturate(110%)"
                         oldEl = el 
                     }
                 }, t)  //write a callback function to handle the DOM Manipulation    
             }
             t += Tone.Time(note[1])
-            lastTime = t
+            lastTime = t // keep track of time to schedule removing style from last note after for loop
             
         }// end of for loop
         // schedule removing style from last note
