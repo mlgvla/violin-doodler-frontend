@@ -239,7 +239,13 @@ async function playMelody(melody) {
         // schedule removing style from last note
         Tone.Draw.schedule(() => {
             let lastNote = melody[melody.length -1][0]
-            document.querySelector(`[data-note="${lastNote}"]`).removeAttribute("style")
+          
+            if (lastNote == "D4" || lastNote == "A4" || lastNote == "E5") {
+                console.log(lastNote)
+                document.querySelectorAll(`[data-note="${lastNote}"]`)[1].removeAttribute("style")   
+            } else {
+                document.querySelector(`[data-note="${lastNote}"]`).removeAttribute("style")  
+            }
         }, lastTime)
     }, 0) //end of Transport.schedule
 
