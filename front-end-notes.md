@@ -4,6 +4,7 @@ Must Have:
     [x] notes respond to mouseDown and mouseUp events
     [x] const synth should be global because it is accessed by several functions - evenutally moved to violin class?
     [ ] add hover listener specific to open strings - will trump the violin listener because it's more specific
+    [ ] user-defined BPM - add to td that holds play and delete buttons.  Eventually store BPM with Melody?
 
 [x] Animation
     [x] note highlight synced with sound
@@ -19,7 +20,7 @@ Must Have:
 
 Would be nice:
 
-Designate BPM
+Designate BPM (moved it up to Must Have)
 
 2 Modes:  Practice Mode and Compose Mode for Violin div
     - button group - one or the other selected
@@ -33,7 +34,7 @@ Designate BPM
 Compose Mode
     - select note value
     - click on desired note
-    - note with vallue pushed onto array in text area box.  Can be edited before submission
+    - note with value pushed onto array in text area box.  Can be edited before submission
 
 
 
