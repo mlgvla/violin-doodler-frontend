@@ -5,9 +5,9 @@ Must Have:
     [x] const synth should be global because it is accessed by several functions - evenutally moved to violin class?
     [ ] add hover listener specific to open strings - will trump the violin listener because it's more specific
 
-[ ] Animation
+[x] Animation
     [x] note highlight synced with sound
-    [ ] show open strings highlighting
+    [x] show open strings highlighting
 
 [ ] Fingerboard Customization
     [ ] choose which string(s) to display

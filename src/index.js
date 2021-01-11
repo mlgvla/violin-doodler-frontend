@@ -201,13 +201,20 @@ async function playMelody(melody) {
     Tone.Transport.schedule((time) => {
 
         let t = time
-        let oldEl;
+        let oldEl; // 
         let lastTime; // need in order to schedule removing style from last note
         
 
         for (let i = 0; i < melody.length; i++) {
             let note = melody[i]
-            let el = document.querySelector(`[data-note="${note[0]}"]`) // if D4, A4, or E5, just have open string light up. 4th finger can be an option later on.    
+            let el;
+
+            //is this an open string? G3 has no 4th finger equivalent.  Just have open string light up. 4th finger alone or both can be an option later on. 
+            if (note[0] == "D4" || note[0] == "A4" || note[0] == "E5") {
+                el = document.querySelectorAll(`[data-note="${note[0]}"]`)[1] // there are two elements with the same data-note value. We want the open-string element
+            } else {
+                el = document.querySelector(`[data-note="${note[0]}"]`)  
+            }
             
             if (note[0] !== "rest") {
                 synth.triggerAttackRelease(note[0], Tone.Time(note[1]) - 0.1, t)
