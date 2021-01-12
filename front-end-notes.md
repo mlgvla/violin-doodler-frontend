@@ -11,7 +11,7 @@ Must Have:
     [x] show open strings highlighting
 
 [ ] Fingerboard Customization
-    [ ] choose which string(s) to display
+    [x] choose which string(s) to display
     [ ] choose which notes (by key) to display:  A major, D major, G major
 
 [ ] User class
