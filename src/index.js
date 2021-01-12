@@ -1,6 +1,7 @@
 const endPoint = "http://localhost:3000/api/v1/melodies"
 const synth = new Tone.Synth().toDestination();
 
+
 document.addEventListener("DOMContentLoaded", () => {
     getMelodies()
 
@@ -251,5 +252,22 @@ async function playMelody(melody) {
 
     Tone.Transport.start()   
 }
+
+// Preferences
+const stringChange = document.querySelector("#stringGroup")
+
+stringChange.addEventListener("change", (e) => {
+    let string = e.target.dataset.show
+    let elements = document.querySelectorAll(`.note.${string}`)
+    if (!e.target.checked) {
+        elements.forEach((element) => {
+            element.style.visibility = "hidden"
+        })
+    } else {
+        elements.forEach((element) => {
+            element.style.visibility = "visible"
+        })
+    }
+ })
 
 
