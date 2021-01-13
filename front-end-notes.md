@@ -20,9 +20,9 @@ Must Have:
     [x] choose which string(s) to display
     [x] choose which notes (by key) to display:  A major, D major, G major
 
-[ ] User class
-    [ ] populate select box with all students upon DOM Content Load - can maybe do without extra fetch?
-    [ ] alphabetize
+[x] User class
+    [x] populate select box with all students upon DOM Content Load - can maybe do without extra fetch?
+    [x] alphabetize
 
 Would be nice:
 

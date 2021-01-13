@@ -1,9 +1,11 @@
 const endPoint = "http://localhost:3000/api/v1/melodies"
+const endPointUsers = "http://localhost:3000/api/v1/users"
 const synth = new Tone.Synth().toDestination();
 
 
 document.addEventListener("DOMContentLoaded", () => {
     getMelodies()
+    getusers()
 
     createMelodyForm = document.querySelector("#create-melody-form")
 
@@ -75,7 +77,7 @@ function createFormHandler(e){
     const titleInput = document.querySelector("#input-title").value
     const notesInput = document.querySelector("#input-notes").value
     const keyInput = document.querySelector("#input-key").value
-    const userId = document.querySelector("#user-id").value
+    const userId = document.querySelector("#users").value
     //const userId = parseInt(userInput) for inputting a new user
     postMelody(titleInput, notesInput, keyInput, userId)
 }
@@ -321,8 +323,16 @@ stringChange.addEventListener("change", (e) => {
             })
     }
 
-
-
  }
+
+ function getusers() {
+    fetch(endPointUsers)
+        .then(res => res.json())
+        .then(users => {
+            User.userSelectOptions(users.data)            
+        })
+}
+
+
 
 
