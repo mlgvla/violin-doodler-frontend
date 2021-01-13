@@ -63,7 +63,9 @@ function getMelodies() {
 
 function getMelody(e) {
     melodyNotes = JSON.parse(Melody.findById(e.target.dataset.id).notes)
-    playMelody(melodyNotes)
+    //get the BPM out of the tempo input box
+    const tempo = document.getElementById("tempo").value
+    playMelody(melodyNotes, parseInt(tempo))
 }
 
 
@@ -187,7 +189,8 @@ async function playNote(note){
 //   }  
 // }
 
-async function playMelody(melody) {
+async function playMelody(melody, tempo) {
+   
     await Tone.start() 
 
     console.log("audio is ready")
@@ -197,7 +200,7 @@ async function playMelody(melody) {
     Tone.Transport.position = 0;
     Tone.Transport.cancel();
 
-    Tone.Transport.bpm.value = 120; // eventually make this user-defined
+    Tone.Transport.bpm.value = tempo; // eventually make this user-defined
 
     Tone.Transport.schedule((time) => {
 
@@ -311,6 +314,8 @@ stringChange.addEventListener("change", (e) => {
             })
             break;
         default:
+            //Fix Bug: recheck any unchecked String checkboxes when "All Notes is select"
+
             document.querySelectorAll(".note").forEach(note => {
                 note.style.visibility = "visible"
             })
