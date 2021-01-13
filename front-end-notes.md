@@ -1,18 +1,24 @@
+Bug to Fix (create new branch for this):
+[] All Notes should re-check any unchecked Strings
+[] Make sure you only show the key patterns for selected strings - right now the pattern shows on unchecked boxes 
+   I have to choose key before unchecking string choice to avoid bug
+
 Stretch Goals:
 Must Have:
 [ ] Practice Mode
     [x] notes respond to mouseDown and mouseUp events
     [x] const synth should be global because it is accessed by several functions - evenutally moved to violin class?
     [ ] add hover listener specific to open strings - will trump the violin listener because it's more specific
-    [ ] user-defined BPM - add to td that holds play and delete buttons.  Eventually store BPM with Melody?
+    [x] user-defined BPM - add to td that holds play and delete buttons.  Eventually store BPM with Melody?
+    [ ] Place finger numbers to the left of fingerboard
 
 [x] Animation
     [x] note highlight synced with sound
     [x] show open strings highlighting
 
-[ ] Fingerboard Customization
-    [ ] choose which string(s) to display
-    [ ] choose which notes (by key) to display:  A major, D major, G major
+[x] Fingerboard Customization
+    [x] choose which string(s) to display
+    [x] choose which notes (by key) to display:  A major, D major, G major
 
 [ ] User class
     [ ] populate select box with all students upon DOM Content Load - can maybe do without extra fetch?

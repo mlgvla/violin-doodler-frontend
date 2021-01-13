@@ -22,14 +22,42 @@
   font-family: Verdana, Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: center;
-  margin-right: 25%;
+  /* margin-right: 25%; put this in if no preference container */
   /* for layout debugging */
-    /* border-style: solid;
-  border-width: 3px;
-  /* background-color: blue; */
- 
- 
+     /* border-style: solid;
+    border-width: 3px;
+     background-color: blue;  */
 }
+
+/* Preference Container */
+
+#preferences {
+    margin-top: 3rem;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+ }
+ 
+ #stringFieldset {
+    width: 50%;
+ }
+ 
+ #stringGroup {
+    display: flex;
+    justify-content: space-between;
+ }
+ 
+ #keyFieldset {
+    width: 50%;
+ }
+ 
+ #tempoFieldset {
+    width: 50%;
+ }
+ 
+ #tempo {
+    width: 25%;
+    text-align: center;
+ }
+ 
 
 /* Violin Fingerboard  Styling*/
 

@@ -18,8 +18,8 @@
             <tr>
                 <th>Melody</th>
                 <th>Key</th>
-                <th>Creator</th>
-                <th>Action</th>
+                <th>Student</th>
+                <th>Actions</th>
             </tr>
         </table>
     <div class="form-container">
@@ -92,6 +92,67 @@
       </div>
     </div>
   </div>
+  <div id="preferences">
+    <fieldset id="stringFieldset">
+       <legend>Strings</legend>
+       <div id="stringGroup">
+          <div>
+             <input type="checkbox" data-show="g-string" name="showG" checked>
+             <label for="showG">G</label>
+          </div>
+          <div>
+             <input type="checkbox" data-show="d-string" name="showD" checked>
+             <label for="showD">D</label>
+          </div>
+          <div>
+             <input type="checkbox" data-show="a-string" name="showA" checked>
+             <label for="show">A</label>
+          </div>
+          <div>
+             <input type="checkbox" data-show="e-string" name="showE" checked>
+             <label for="showE">E</label>
+          </div>
+       </div>
+    </fieldset>
+    <br><br>
+ 
+    <fieldset id="keyFieldset">
+       <legend>Key</legend>
+       <div id="keyGroup">
+          <div>
+             <input type="radio" id="A-Major" name="keyChoice" data-key="a-major">
+             <label for="A-Major">A Major</label>
+          </div>
+          <br>
+          <div>
+             <input type="radio" id="D-Major" name="keyChoice" data-key="d-major">
+             <label for="D-Major">D Major</label>
+          </div>
+          <br>
+          <div>
+             <input type="radio" id="G-Major" name="keyChoice" data-key="g-major">
+             <label for="G-Major">G Major</label>
+          </div>
+          <br>
+          <div>
+             <input type="radio" id="C-Major" name="keyChoice" data-key="c-major">
+             <label for="C-Major">C Major</label>
+          </div>
+          <br>
+          <div>
+             <input type="radio" id="All" name="keyChoice" data-key="all" checked>
+             <label for="All">All Notes</label>
+          </div>
+       </div>
+ 
+    </fieldset>
+    <br><br>
+ 
+    <fieldset id="tempoFieldset">
+       <legend>Tempo</legend>
+       <input type="text" id="tempo" name="tempo" value="100">&nbsp;BPM
+    </fieldset>
+ </div>
 </div> 
 
 

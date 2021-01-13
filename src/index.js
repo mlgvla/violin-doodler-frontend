@@ -1,6 +1,7 @@
 const endPoint = "http://localhost:3000/api/v1/melodies"
 const synth = new Tone.Synth().toDestination();
 
+
 document.addEventListener("DOMContentLoaded", () => {
     getMelodies()
 
@@ -62,7 +63,9 @@ function getMelodies() {
 
 function getMelody(e) {
     melodyNotes = JSON.parse(Melody.findById(e.target.dataset.id).notes)
-    playMelody(melodyNotes)
+    //get the BPM out of the tempo input box
+    const tempo = document.getElementById("tempo").value
+    playMelody(melodyNotes, parseInt(tempo))
 }
 
 
@@ -186,7 +189,8 @@ async function playNote(note){
 //   }  
 // }
 
-async function playMelody(melody) {
+async function playMelody(melody, tempo) {
+   
     await Tone.start() 
 
     console.log("audio is ready")
@@ -196,7 +200,7 @@ async function playMelody(melody) {
     Tone.Transport.position = 0;
     Tone.Transport.cancel();
 
-    Tone.Transport.bpm.value = 120; // eventually make this user-defined
+    Tone.Transport.bpm.value = tempo; // eventually make this user-defined
 
     Tone.Transport.schedule((time) => {
 
@@ -251,5 +255,74 @@ async function playMelody(melody) {
 
     Tone.Transport.start()   
 }
+
+// Preferences
+const stringChange = document.querySelector("#stringGroup")
+
+stringChange.addEventListener("change", (e) => {
+    let string = e.target.dataset.show
+    let elements = document.querySelectorAll(`.note.${string}`)
+    if (!e.target.checked) {
+        elements.forEach((element) => {
+            element.style.visibility = "hidden"
+        })
+    } else {
+        elements.forEach((element) => {
+            element.style.visibility = "visible"
+        })
+    }
+ })
+
+ const keyChange = document.querySelector("#keyGroup")
+
+ keyChange.addEventListener("change", (e) => keyPattern(e.target.dataset.key))
+
+ function keyPattern(key) {
+     console.log(key)
+
+    // hide all strings
+    document.querySelectorAll(".note").forEach(note => {
+        note.style.visibility = "hidden"
+    })
+
+    // notes to display by key signature
+    const aPattern = ["A3","B3","C#4","D4","E4","F#4","G#4","A4","B4","C#5","D5","E5","F#5","G#5","A5","B5"]
+    const dPattern = ["A3","B3","C#4","D4","E4","F#4","G4","A4","B4","C#5","D5","E5","F#5","G5","A5","B5"]
+    const gPattern = ["A3","B3","C4","D4","E4","F#4","G4","A4","B4","C5","D5","E5","F#5","G5","A5","B5"]
+    const cPattern = ["A3","B3","C4","D4","E4","F4","G4","A4","B4","C5","D5","E5","F5","G5","A5","B5"]
+    
+    // create a switch statement here for the selected key - make "all" the default pattern
+    switch(key) {
+        case "a-major":
+            aPattern.forEach((note) => {
+                document.querySelector(`[data-note="${note}"]`).style.visibility = "visible"
+            })
+            break;
+        case "d-major":
+            dPattern.forEach((note) => {
+                document.querySelector(`[data-note="${note}"]`).style.visibility = "visible"
+            })
+            break;
+        case "g-major":
+            gPattern.forEach((note) => {
+                document.querySelector(`[data-note="${note}"]`).style.visibility = "visible"
+            })
+            break;
+        case "c-major":
+            cPattern.forEach((note) => {
+                document.querySelector(`[data-note="${note}"]`).style.visibility = "visible"
+            })
+            break;
+        default:
+            //Fix Bug: recheck any unchecked String checkboxes when "All Notes is select"
+
+            document.querySelectorAll(".note").forEach(note => {
+                note.style.visibility = "visible"
+            })
+    }
+
+
+
+ }
 
 
