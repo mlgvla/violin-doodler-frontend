@@ -1,4 +1,4 @@
-Bug to Fix:
+Bug to Fix (create new branch for this):
 [] All Notes should re-check any unchecked Strings
 [] Make sure you only show the key patterns for selected strings - right now the pattern shows on unchecked boxes 
    I have to choose key before unchecking string choice to avoid bug
