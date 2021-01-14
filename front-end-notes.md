@@ -1,7 +1,8 @@
 Bug to Fix (create new branch for this):
-[] All Notes should re-check any unchecked Strings
-[] Make sure you only show the key patterns for selected strings - right now the pattern shows on unchecked boxes 
-   I have to choose key before unchecking string choice to avoid bug
+[x] All Notes should re-check any unchecked Strings
+[x] Make sure you only show the key patterns for selected strings - right now the pattern shows on unchecked boxes 
+    I have to choose key before unchecking string choice to avoid bug
+[]  If a key is selected and you hide a string, when you reshow the string, all the notes appear, not just the ones in the finger pattern 
 
 Stretch Goals:
 Must Have:
