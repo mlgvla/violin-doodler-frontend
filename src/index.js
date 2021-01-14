@@ -299,20 +299,32 @@ stringChange.addEventListener("change", (e) => {
             aPattern.forEach((note) => {
                 document.querySelector(`[data-note="${note}"]`).style.visibility = "visible"
             })
+            document.querySelectorAll("[data-show]").forEach(cb => {
+                cb.checked = true
+            })
             break;
         case "d-major":
             dPattern.forEach((note) => {
                 document.querySelector(`[data-note="${note}"]`).style.visibility = "visible"
+            })
+            document.querySelectorAll("[data-show]").forEach(cb => {
+                cb.checked = true
             })
             break;
         case "g-major":
             gPattern.forEach((note) => {
                 document.querySelector(`[data-note="${note}"]`).style.visibility = "visible"
             })
+            document.querySelectorAll("[data-show]").forEach(cb => {
+                cb.checked = true
+            })
             break;
         case "c-major":
             cPattern.forEach((note) => {
                 document.querySelector(`[data-note="${note}"]`).style.visibility = "visible"
+            })
+            document.querySelectorAll("[data-show]").forEach(cb => {
+                cb.checked = true
             })
             break;
         default:
@@ -321,6 +333,11 @@ stringChange.addEventListener("change", (e) => {
             document.querySelectorAll(".note").forEach(note => {
                 note.style.visibility = "visible"
             })
+            document.querySelectorAll("[data-show]").forEach(cb => {
+                cb.checked = true
+            })
+
+
     }
 
  }
