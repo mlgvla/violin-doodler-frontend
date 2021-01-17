@@ -12,6 +12,7 @@ Must Have:
     [ ] add hover listener specific to open strings - will trump the violin listener because it's more specific
     [x] user-defined BPM - add to td that holds play and delete buttons.  Eventually store BPM with Melody?
     [ ] Place finger numbers to the left of fingerboard
+    [ ] Reduce size of fingerboard a little - center things a bit better
 
 [x] Animation
     [x] note highlight synced with sound
@@ -24,6 +25,11 @@ Must Have:
 [x] User class
     [x] populate select box with all students upon DOM Content Load - can maybe do without extra fetch?
     [x] alphabetize
+
+[ ] Clean Up Code! Do this in branch
+    [ ] Remove old commented-out code
+    [ ] Group things together on index.js
+    [ ] Move anything possible into a JS class
 
 Would be nice:
 
