@@ -226,7 +226,7 @@ async function playMelody(melody, tempo) {
                 synth.triggerAttackRelease(note[0], Tone.Time(note[1]) - 0.1, t)
                 Tone.Draw.schedule(() => {
                     if (i === 0) {
-                        el.style.filter = "brightness(130%) saturate(110%)" 
+                        el.style.filter = "brightness(160%) saturate(110%)" // chnaged from 130 to 160 - not sure why it worked with 130.
                         oldEl = el
                     }
                     else {
