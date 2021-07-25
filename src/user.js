@@ -7,10 +7,12 @@ class User {
     }
 
     static userSelectOptions(users){
-
+    
         const sortedUsers = users.sort((a, b) => (a.attributes.name > b.attributes.name) ? 1 : -1)
         const select = document.getElementById("users")
         
+        this.clearSelectOptions(select)
+
         sortedUsers.forEach(user => {
           let option = document.createElement("option")
   
@@ -19,6 +21,13 @@ class User {
           option.innerHTML = user.attributes.name
           select.appendChild(option)           
         });
+    }
+
+    static clearSelectOptions(selectBox){
+        console.log("in clear select")
+        while (selectBox.options.length > 0) {
+            selectBox.remove(0);
+        }
     }
 }
 
