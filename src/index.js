@@ -5,7 +5,7 @@ const synth = new Tone.Synth().toDestination();
 
 document.addEventListener("DOMContentLoaded", () => {
     getMelodies()
-    getusers()
+    getUsers
 
     createMelodyForm = document.querySelector("#create-melody-form")
 
@@ -327,12 +327,20 @@ stringChange.addEventListener("change", (e) => {
     })
  }
 
- function getusers() {
+ function getUsers() {
     fetch(endPointUsers)
         .then(res => res.json())
         .then(users => {
             User.userSelectOptions(users.data)            
         })
+}
+
+function addUser(e) {
+    //called by user form event listener
+    //get name out of target
+    //put it into a configObj
+    //POST it to the database
+    //call getUsers to repopulate the Select options
 }
 
 
