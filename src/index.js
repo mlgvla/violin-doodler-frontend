@@ -7,9 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
     getMelodies()
     getUsers()
 
-    createMelodyForm = document.querySelector("#create-melody-form")
+    createMelodyForm = document.querySelector("#create-melody-form") // add let
 
-    createMelodyForm.addEventListener('submit', (e) => createFormHandler(e))
+    createMelodyForm.addEventListener('submit', (e) => createFormHandler(e))  // add let
+
+    let createUserForm = document.querySelector("#create-user-form")
+    createUserForm.addEventListener("submit", (e) => addUser(e))
 })
 
 function getMelodies() {
@@ -327,21 +330,33 @@ stringChange.addEventListener("change", (e) => {
     })
  }
 
+ // User Functions
+
  function getUsers() {
     fetch(endPointUsers)
         .then(res => res.json())
         .then(users => {
+            console.log(users.data)
             User.userSelectOptions(users.data)            
         })
 }
 
 function addUser(e) {
-    //called by user form event listener
-    //get name out of target
-    //put it into a configObj
-    //POST it to the database
-    //call getUsers to repopulate the Select options
+    e.preventDefault()
+    const userName = document.getElementById("input-user").value
+    const bodyData = {name: userName}
+    fetch(endPointUsers, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(bodyData)
+    })
+    .then(res => res.json())
+    .then(user => console.log(user.data)) // reloads the select box including new User - current implementation doesn't require maintaining a User.all
+    
+    document.querySelector("#create-user-form").reset()
+    
 }
+
 
 
 
