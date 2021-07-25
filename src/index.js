@@ -296,50 +296,35 @@ stringChange.addEventListener("change", (e) => {
     // create a switch statement here for the selected key - make "all" the default pattern
     switch(key) {
         case "a-major":
-            aPattern.forEach((note) => {
-                document.querySelector(`[data-note="${note}"]`).style.visibility = "visible"
-            })
-            document.querySelectorAll("[data-show]").forEach(cb => {
-                cb.checked = true
-            })
+            showFingerPattern(aPattern)
             break;
         case "d-major":
-            dPattern.forEach((note) => {
-                document.querySelector(`[data-note="${note}"]`).style.visibility = "visible"
-            })
-            document.querySelectorAll("[data-show]").forEach(cb => {
-                cb.checked = true
-            })
+            showFingerPattern(dPattern)
             break;
         case "g-major":
-            gPattern.forEach((note) => {
-                document.querySelector(`[data-note="${note}"]`).style.visibility = "visible"
-            })
-            document.querySelectorAll("[data-show]").forEach(cb => {
-                cb.checked = true
-            })
+            showFingerPattern(gPattern)
             break;
         case "c-major":
-            cPattern.forEach((note) => {
-                document.querySelector(`[data-note="${note}"]`).style.visibility = "visible"
-            })
-            document.querySelectorAll("[data-show]").forEach(cb => {
-                cb.checked = true
-            })
+            showFingerPattern(cPattern)
             break;
         default:
             //Fix Bug: recheck any unchecked String checkboxes when "All Notes is select"
-
             document.querySelectorAll(".note").forEach(note => {
                 note.style.visibility = "visible"
             })
             document.querySelectorAll("[data-show]").forEach(cb => {
                 cb.checked = true
             })
-
-
     }
+ }
 
+ function showFingerPattern(pattern) {
+    pattern.forEach((note) => {
+        document.querySelector(`[data-note="${note}"]`).style.visibility = "visible"
+    })
+    document.querySelectorAll("[data-show]").forEach(cb => {
+        cb.checked = true
+    })
  }
 
  function getusers() {
