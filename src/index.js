@@ -5,7 +5,7 @@ const synth = new Tone.Synth().toDestination();
 
 document.addEventListener("DOMContentLoaded", () => {
     getMelodies()
-    getUsers
+    getUsers()
 
     createMelodyForm = document.querySelector("#create-melody-form")
 
