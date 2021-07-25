@@ -26,11 +26,11 @@
         <form id="create-melody-form">
             <h3>Create a Melody</h3>
         
-            <input id='input-title' type="text" name="title" value="" placeholder="Melody Name" class="input-text">
+            <input id='input-title' type="text" name="title" value="" autocomplete="off" placeholder="Melody Name" class="input-text">
             <br><br>
             <textarea id='input-notes' name="notes" rows="8" cols="80" value="" placeholder="Enter using [[&quot;E4&quot;, &quot;4n.&quot;], [&quot;D4&quot;, &quot;8n&quot;], [&quot;C4&quot;, &quot;4n&quot;]...] format"></textarea>
             <br><br>
-            <input id='input-key' type="text" name="key" value="" placeholder="Enter the key of your melody." class="input-text">
+            <input id='input-key' type="text" name="key" value="" autocomplete="off" placeholder="Enter the key of your melody." class="input-text">
             <br><br>
         
             <select id="users" name="users">
@@ -39,8 +39,9 @@
                 <option value="3">Mason</option> -->
             </select>
             <br><br>
+            <!-- Create New User to be implemented
             <input id='input-user' type="text" name="user" value="" placeholder="Create a new User" class="input-text">
-            <br><br>
+            <br><br> -->
         
             <input id='create-button' type="submit" name="submit" value="Create New Melody" class="submit">
         </form>
