@@ -8,14 +8,13 @@ class User {
     userSelectOptions(){       
         const select = document.getElementById("users")
         const option = document.createElement("option")
-  
+
         option.value = this.id
         option.setAttribute("name", this.name)
         option.innerHTML = this.name
         select.appendChild(option)           
-   
-    }
 
+    }
     static clearSelectOptions(selectBox){
         const select = document.getElementById("users")
         while (selectBox.options.length > 0) {
