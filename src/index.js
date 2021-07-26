@@ -333,11 +333,12 @@ stringChange.addEventListener("change", (e) => {
 
  // User Functions
        
-function getUsers() {
+ function getUsers() {
     fetch(endPointUsers)
         .then(res => res.json())
         .then(users => {
-            users.data.forEach(user => { 
+            const sortedUsers = users.data.sort((a, b) => (a.attributes.name > b.attributes.name) ? 1 : -1)
+            sortedUsers.forEach(user => { 
                 const newUser = new User(user.id, user.attributes.name) 
                 newUser.userSelectOptions()               
             })
@@ -358,10 +359,8 @@ function addUser(e) {
         const newUser = new User(user.data.id, user.data.attributes.name) 
         newUser.userSelectOptions()
     })
-    document.querySelector("#create-user-form").reset()
-
-    console.log(allUsers)
-    
+    document.querySelector("#create-user-form").reset() 
+ 
 }
 
 
