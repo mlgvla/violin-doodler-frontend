@@ -1,6 +1,7 @@
 const endPoint = "http://localhost:3000/api/v1/melodies"
 const endPointUsers = "http://localhost:3000/api/v1/users"
 const synth = new Tone.Synth().toDestination();
+let allUsers = []
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -331,14 +332,16 @@ stringChange.addEventListener("change", (e) => {
  }
 
  // User Functions
-
- function getUsers() {
+       
+function getUsers() {
     fetch(endPointUsers)
         .then(res => res.json())
         .then(users => {
-            console.log(users.data)
-            User.userSelectOptions(users.data)            
-        })
+            users.data.forEach(user => { 
+                const newUser = new User(user.id, user.attributes.name) 
+                newUser.userSelectOptions()               
+            })
+        })                 
 }
 
 function addUser(e) {
@@ -351,9 +354,13 @@ function addUser(e) {
         body: JSON.stringify(bodyData)
     })
     .then(res => res.json())
-    .then(user => console.log(user.data)) // reloads the select box including new User - current implementation doesn't require maintaining a User.all
-    
+    .then(user => {
+        const newUser = new User(user.data.id, user.data.attributes.name) 
+        newUser.userSelectOptions()
+    })
     document.querySelector("#create-user-form").reset()
+
+    console.log(allUsers)
     
 }
 
