@@ -1,15 +1,19 @@
 const endPoint = "http://localhost:3000/api/v1/melodies"
 const endPointUsers = "http://localhost:3000/api/v1/users"
 const synth = new Tone.Synth().toDestination();
+let allUsers = []
 
 
 document.addEventListener("DOMContentLoaded", () => {
     getMelodies()
-    getusers()
+    getUsers()
 
-    createMelodyForm = document.querySelector("#create-melody-form")
+    createMelodyForm = document.querySelector("#create-melody-form") // add let
 
-    createMelodyForm.addEventListener('submit', (e) => createFormHandler(e))
+    createMelodyForm.addEventListener('submit', (e) => createFormHandler(e))  // add let
+
+    let createUserForm = document.querySelector("#create-user-form")
+    createUserForm.addEventListener("submit", (e) => addUser(e))
 })
 
 function getMelodies() {
@@ -327,13 +331,38 @@ stringChange.addEventListener("change", (e) => {
     })
  }
 
- function getusers() {
+ // User Functions
+       
+ function getUsers() {
     fetch(endPointUsers)
         .then(res => res.json())
         .then(users => {
-            User.userSelectOptions(users.data)            
-        })
+            const sortedUsers = users.data.sort((a, b) => (a.attributes.name > b.attributes.name) ? 1 : -1)
+            sortedUsers.forEach(user => { 
+                const newUser = new User(user.id, user.attributes.name) 
+                newUser.userSelectOptions()               
+            })
+        })                 
 }
+
+function addUser(e) {
+    e.preventDefault()
+    const userName = document.getElementById("input-user").value
+    const bodyData = {name: userName}
+    fetch(endPointUsers, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(bodyData)
+    })
+    .then(res => res.json())
+    .then(user => {
+        const newUser = new User(user.data.id, user.data.attributes.name) 
+        newUser.userSelectOptions()
+    })
+    document.querySelector("#create-user-form").reset() 
+ 
+}
+
 
 
 

@@ -1,3 +1,9 @@
+#title {
+    display: flex;
+    justify-content: center;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: steelblue;
+}
 /* Container Layout */
 .outer-container {
     display: flex;
